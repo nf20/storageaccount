@@ -10,6 +10,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
-
-
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Free Trial(f7eb33a4-7824-45db-bb90-f89de1574747)'
+    subscriptionId: 'f7eb33a4-7824-45db-bb90-f89de1574747'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'AzureRmPipeline-rg'
+    location: 'Central US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/nf20/storageaccount.git'
+    overrideParameters: 'storageaccount'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate.'
